@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>View Products - Crafters Paradise</title>
+    <link rel="stylesheet" href="viewproduct.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+</head>
+<body>
+    <!-- Header Section -->
+    <header class="header">
+        <div class="header-content">
+            <img src="images\logoo.png" alt="Logo" class="logo">
+            <h1 class="site-name">Crafters Paradise</h1>
+        </div>
+    </header>
+
+    <div class="container">
+        <!-- Sidebar Navigation -->
+        <aside class="sidebar" aria-label="Sidebar Navigation">
+            <nav class="nav-menu">
+                <ul>
+                    <li><a href="admin_dashboard.html"><i class="fas fa-tachometer-alt"></i> Dashboard</a></li>
+                    <li><a href="admin_users.html"><i class="fas fa-users"></i> Users</a></li>
+                    <li><a href="admin_products.html"><i class="fas fa-box"></i> Products</a></li>
+                    <li><a href="admin_settings.html"><i class="fas fa-cogs"></i> Settings</a></li>
+                </ul>
+            </nav>
+            <a href="admin_login.html" class="logout-btn">LOGOUT</a>
+        </aside>
+
+        <!-- Main Content -->
+        <div class="main-content">
+            <div class="profile">
+                <img src="https://static.vecteezy.com/system/resources/previews/005/544/718/original/profile-icon-design-free-vector.jpg" alt="Profile Picture">
+                <h2><!-- Artisan Name will be inserted here --></h2>
+                <p><!-- Artisan Email will be inserted here --></p>
+            </div>
+            <h3>Products Displayed</h3>
+
+            <!-- Product Grid -->
+            <div class="product-grid">
+                <div class="product-item">
+                    <img src="https://via.placeholder.com/150" alt="Product 1">
+                </div>
+                <div class="product-item">
+                    <img src="https://via.placeholder.com/150" alt="Product 2">
+                </div>
+                <div class="product-item">
+                    <img src="https://via.placeholder.com/150" alt="Product 3">
+                </div>
+                <div class="product-item">
+                    <img src="https://via.placeholder.com/150" alt="Product 4">
+                </div>
+                <div class="product-item">
+                    <img src="https://via.placeholder.com/150" alt="Product 5">
+                </div>
+                <div class="product-item">
+                    <img src="https://via.placeholder.com/150" alt="Product 6">
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- JavaScript to handle query parameters -->
+    <script>
+        // Function to get query parameters from URL
+        function getQueryParam(param) {
+            const urlParams = new URLSearchParams(window.location.search);
+            return urlParams.get(param);
+        }
+
+        // Get the artisan's name and email from the URL
+        const artisanName = getQueryParam('name');
+        const artisanEmail = getQueryParam('email');
+
+        // Display the artisan's details in the appropriate elements
+        document.querySelector('.profile h2').textContent = artisanName || 'Artisan Name Not Available';
+        document.querySelector('.profile p').textContent = artisanEmail || 'Artisan Email Not Available';
+    </script>
+</body>
+</html>

@@ -1,0 +1,215 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Settings</title>
+    <link rel="stylesheet" href="settings.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <script src="https://www.gstatic.com/firebasejs/9.23.0/firebase-app-compat.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/9.23.0/firebase-firestore-compat.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/9.23.0/firebase-storage-compat.js"></script>
+</head>
+<body>
+    <header class="header">
+        <div class="header-content">
+            <img src="images\logoo.png" alt="Logo" class="logo">
+            <h1 class="site-name">Crafters Paradise</h1>
+        </div>
+    </header>
+
+    <div class="container">
+        <aside class="sidebar" aria-label="Sidebar Navigation">
+            <nav class="nav-menu">
+                <ul>
+                    <li><a href="admin_dashboard.html"><i class="fas fa-tachometer-alt"></i> Dashboard</a></li>
+                    <li><a href="admin_users.html"><i class="fas fa-users"></i> Users</a></li>
+                    <li><a href="admin_products.html"><i class="fas fa-box"></i> Products</a></li>
+                    <li><a href="admin_settings.html"><i class="fas fa-cogs"></i> Settings</a></li>
+                </ul>
+            </nav>
+            <a href="admin_login.html" class="logout-btn">LOGOUT</a>
+        </aside>
+
+        <main class="main-content">
+            <div class="settings-card">
+                <div class="profile-section-settings">
+                    <label for="profilepic" style="cursor: pointer;">
+                        <img src="images/defaultprof.png" alt="Admin" class="profile-pic-settings" id="profilepic">
+                    </label>
+                    <input type="file" id="profilepic-input" name="profilepic" accept="image/*" style="display: none;" />
+                    <div class="profile-info-settings">
+                        <h2 class="admin-name-settings" id="settings-admin-name"></h2>
+                        <p class="email-settings" id="settings-email"></p>
+                        <div id="profileActionButtons" style="display: none;">
+                            <button type="button" class="change-profile-btn" id="changeProfileBtn">Change Profile</button>
+                            <button type="button" class="remove-profile-btn" id="removeProfileBtn">Remove Profile</button>
+                        </div>
+                    </div>
+                </div>
+                <form id="profileForm">
+                    <div class="input-group">
+                        <label for="fullname">Full Name</label>
+                        <input type="text" id="fullname" name="fullname" readonly disabled />
+                    </div>
+                    <div class="input-group">
+                        <label for="role">Role</label>
+                        <input type="text" id="role" name="role" readonly />
+                    </div>
+                    <div class="input-group">
+                        <label for="email">Email</label>
+                        <input type="email" id="email" name="email" readonly disabled />
+                    </div>
+                    <div class="input-group password-field">
+                        <label for="password">Password</label>
+                        <input type="text" id="password" name="password" readonly disabled />
+                    </div>
+
+                    <div class="button-container">
+                        <button type="button" class="edit-btn" id="editProfileBtn">EDIT PROFILE</button>
+                        <button type="submit" class="save-btn" id="saveChangesBtn" style="display:none;">Save Changes</button>
+                        <button type="button" class="cancel-btn" id="cancelEditBtn" style="display:none;">Cancel</button>
+                    </div>
+                </form>
+            </div>
+        </main>
+    </div>
+
+    <script>
+        const firebaseConfig = {
+            apiKey: "AIzaSyCdp-AWmi1GrcrCYrEcog6rfhRygrt0uRc",
+            authDomain: "craftersparadise-8c962.firebaseapp.com",
+            projectId: "craftersparadise-8c962",
+            storageBucket: "craftersparadise-8c962.appspot.com",
+            messagingSenderId: "419818070255",
+            appId: "1:419818070255:web:434b87d32020bf3aa67b1a"
+        };
+        const app = firebase.initializeApp(firebaseConfig);
+        const db = firebase.firestore();
+        const storage = firebase.storage();
+
+        window.onload = function() {
+            const userData = JSON.parse(localStorage.getItem('loggedInUser'));
+            if (userData) {
+                document.getElementById('settings-admin-name').textContent = userData.fullname;
+                document.getElementById('settings-email').textContent = userData.email;
+                document.getElementById('fullname').value = userData.fullname;
+                document.getElementById('role').value = userData.role;
+                document.getElementById('email').value = userData.email;
+                document.getElementById('password').value = userData.password;
+                document.getElementById('profilepic').src = userData.profilepic || 'images/defaultprof.png';
+                fetchFirestoreUserId(userData.email);
+            } else {
+                alert('No user logged in.');
+                window.location.href = 'admin_login.html';
+            }
+        };
+
+        async function fetchFirestoreUserId(email) {
+            try {
+                const querySnapshot = await db.collection('admins').where('email', '==', email).get();
+                if (!querySnapshot.empty) {
+                    const doc = querySnapshot.docs[0];
+                    const userDocId = doc.id;
+                    const userData = JSON.parse(localStorage.getItem('loggedInUser'));
+                    userData.id = userDocId;
+                    localStorage.setItem('loggedInUser', JSON.stringify(userData));
+                } else {
+                    alert('No matching document found.');
+                    window.location.href = 'admin_login.html';
+                }
+            } catch (error) {
+                console.error("Error fetching Firestore document ID: ", error);
+            }
+        }
+
+        document.getElementById('editProfileBtn').onclick = function() {
+            document.querySelectorAll('#profileForm input').forEach(input => {
+                input.removeAttribute('readonly');
+                input.disabled = false;
+            });
+            document.getElementById('editProfileBtn').style.display = 'none';
+            document.getElementById('saveChangesBtn').style.display = 'inline-block';
+            document.getElementById('cancelEditBtn').style.display = 'inline-block';
+            document.getElementById('profileActionButtons').style.display = 'inline-block';
+        };
+
+        document.getElementById('changeProfileBtn').onclick = function() {
+            document.getElementById('profilepic-input').click();
+        };
+
+        document.getElementById('profilepic-input').onchange = async function(e) {
+            const file = e.target.files[0];
+            const userData = JSON.parse(localStorage.getItem('loggedInUser'));
+            const userDocId = userData.id;
+
+            if (file) {
+                const storageRef = storage.ref(`profilepics/${userDocId}.png`);
+                try {
+                    await storageRef.put(file);
+                    const downloadURL = await storageRef.getDownloadURL();
+                    await db.collection('admins').doc(userDocId).update({ profilepic: downloadURL });
+                    userData.profilepic = downloadURL;
+                    localStorage.setItem('loggedInUser', JSON.stringify(userData));
+                    document.getElementById('profilepic').src = downloadURL;
+                    alert('Profile picture updated successfully!');
+                } catch (error) {
+                    console.error("Error uploading profile picture: ", error);
+                    alert('Failed to update profile picture. Please try again.');
+                } finally {
+                    e.target.value = '';
+                }
+            }
+        };
+
+        document.getElementById('removeProfileBtn').onclick = async function() {
+            const userData = JSON.parse(localStorage.getItem('loggedInUser'));
+            const userDocId = userData.id;
+            try {
+                await db.collection('admins').doc(userDocId).update({ profilepic: '' });
+                userData.profilepic = '';
+                localStorage.setItem('loggedInUser', JSON.stringify(userData));
+                document.getElementById('profilepic').src = 'images/defaultprof.png';
+                alert('Profile picture removed successfully!');
+            } catch (error) {
+                console.error("Error removing profile picture: ", error);
+                alert('Failed to remove profile picture. Please try again.');
+            }
+        };
+
+        document.getElementById('profileForm').onsubmit = async function(e) {
+            e.preventDefault();
+            const userData = JSON.parse(localStorage.getItem('loggedInUser'));
+            const userDocId = userData.id;
+
+            const updatedData = {
+                fullname: document.getElementById('fullname').value,
+                email: document.getElementById('email').value,
+                password: document.getElementById('password').value,
+                role: document.getElementById('role').value
+            };
+
+            try {
+                await db.collection('admins').doc(userDocId).update(updatedData);
+                localStorage.setItem('loggedInUser', JSON.stringify({ ...userData, ...updatedData }));
+                alert('Profile updated successfully!');
+                window.location.reload();
+            } catch (error) {
+                console.error("Error updating profile: ", error);
+                alert('Failed to update profile. Please try again.');
+            }
+        };
+
+        document.getElementById('cancelEditBtn').onclick = function() {
+            document.querySelectorAll('#profileForm input').forEach(input => {
+                input.setAttribute('readonly', true);
+                input.disabled = true;
+            });
+            document.getElementById('editProfileBtn').style.display = 'inline-block';
+            document.getElementById('saveChangesBtn').style.display = 'none';
+            document.getElementById('cancelEditBtn').style.display = 'none';
+            document.getElementById('profileActionButtons').style.display = 'none';
+        };
+    </script>
+</body>
+</html>

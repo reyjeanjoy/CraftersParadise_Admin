@@ -1,0 +1,160 @@
+/* Reset and basic styles */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: Century Gothic;
+}
+
+body {
+    display: flex;
+    flex-direction: column;
+    height: 100vh;
+    background-color: #f4f4f4;
+}
+
+.header {
+    width: 100%;
+    background-color: #6f3b26;
+}
+
+.header-content {
+    display: flex;
+    align-items: center;
+}
+
+.logo {
+    width: 150px;
+    height: 95px;
+    object-fit: cover;
+    object-position: center;
+    margin-right: 10px;
+    margin-top: -10px;
+}
+
+.site-name {
+    font-size: 32px;
+    letter-spacing: 5px;
+    font-weight: bold;
+    color: #fff;
+}
+
+/* Container for sidebar and content */
+.container {
+    display: flex;
+    flex: 1;
+    width: calc(100vw - 250px); /* Account for sidebar width */
+    margin-left: 250px; /* Offset content by sidebar width */
+    background-color: #f4f4f4;
+}
+
+/* Sidebar */
+.sidebar {
+    width: 250px;
+    background-color:  #6f3b26;
+    color: #fff;
+    position: fixed;
+    left: 0; /* Always visible */
+    top: 85px; /* Below the header */
+    height: calc(100% - 70px);
+    display: flex;
+    flex-direction: column;
+    padding-top: 20px;
+    z-index: 9;
+    font-size: large;
+    font-weight: bold;
+    letter-spacing: 3px;
+}
+
+
+/* Sidebar Nav Menu */
+.nav-menu ul {
+    list-style-type: none;
+    padding: 0;
+}
+
+.nav-menu ul li {
+    width: 100%;
+}
+
+.nav-menu ul li a {
+    color: #fff;
+    text-decoration: none;
+    padding: 10px 15px;
+    display: flex;
+    align-items: center;
+    margin-top: 30px;
+}
+
+.nav-menu ul li a i {
+    margin-right: 10px;
+    font-size: 20px;
+    padding: 5px;
+}
+
+.nav-menu ul li a:hover {
+    background-color: #d9b59e;
+    font-weight: bold;
+}
+
+/* Logout Button */
+.logout-btn {
+    position: absolute;
+    bottom: 20px;
+    left: 50%;
+    transform: translateX(-50%);
+    text-decoration: none;
+    color: #fff;
+    background-color: #d9534f;
+    padding: 10px 20px;
+    border-radius: 5px;
+    font-size: 15px;
+    font-weight: bold;
+}
+
+.logout-btn:hover {
+    background-color: #c9302c;
+}
+
+/* Main Content */
+.main-content {
+    display: flex;
+    flex-direction: column;
+    padding: 20px;
+    flex-grow: 1;
+}
+
+/* User Tables */
+.user-tables .table-section {
+    margin-bottom: 30px;
+}
+
+.user-tables table {
+    width: 100%;
+    border-collapse: collapse;
+}
+
+.user-tables th, .user-tables td {
+    padding: 12px;
+    text-align: left;
+    border-bottom: 1px solid #ddd;
+}
+
+.user-tables th {
+    background-color: #6f3b26;
+    color: white;
+}
+
+.user-tables tr:nth-child(even) {
+    background-color: #f4f4f4;
+}
+
+/* User Links */
+.user-tables a {
+    color: #6f3b26;
+    text-decoration: none;
+}
+
+.user-tables a:hover {
+    text-decoration: underline;
+}

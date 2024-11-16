@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>User Details - Crafters Paradise</title>
+    <link rel="stylesheet" href="viewusers.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+</head>
+<body>
+    <header class="header">
+        <div class="header-content">
+            <img src="images\logoo.png" alt="Logo" class="logo">
+            <h1 class="site-name">Crafters Paradise</h1>
+        </div>
+    </header>
+
+    <div class="container">
+        <!-- Sidebar Navigation -->
+        <aside class="sidebar" aria-label="Sidebar Navigation">
+            <nav class="nav-menu">
+                <ul>
+                    <li><a href="admin_dashboard.html"><i class="fas fa-tachometer-alt"></i> Dashboard</a></li>
+                    <li><a href="admin_users.html"><i class="fas fa-users"></i> Users</a></li>
+                    <li><a href="admin_products.html"><i class="fas fa-box"></i> Products</a></li>
+                    <li><a href="admin_settings.html"><i class="fas fa-cogs"></i> Settings</a></li>
+                </ul>
+            </nav>
+            <a href="admin_login.html" class="logout-btn">LOGOUT</a>
+        </aside>
+
+        <main class="main-content">
+            <section class="user-details">
+                <div class="user-card">
+                    <img src="https://static.vecteezy.com/system/resources/previews/005/544/718/original/profile-icon-design-free-vector.jpg" alt="User Image" class="user-pic">
+                    <div class="user-info">
+                        <h3 id="user-name">User Name</h3>
+                        <p id="user-email">User Email</p>
+                    </div>
+                    <div class="buttons">
+                        <button class="btn status" id="subscription-status-btn">Subscription Status</button>
+                        <button class="btn profile" id="view-profile-btn">View Profile</button>
+                    </div>
+                </div>
+            </section>
+        </main>
+    </div>
+
+    <script>
+        const urlParams = new URLSearchParams(window.location.search);
+        const userName = urlParams.get('name');
+        const userEmail = urlParams.get('email');
+
+        document.getElementById('user-name').textContent = userName;
+        document.getElementById('user-email').textContent = userEmail;
+
+        document.getElementById('subscription-status-btn').addEventListener('click', function() {
+            window.location.href = `admin_subscription.html?name=${encodeURIComponent(userName)}&email=${encodeURIComponent(userEmail)}`;
+        });
+
+        document.getElementById('view-profile-btn').addEventListener('click', function() {
+            window.location.href = `admin_viewuserprofile.html?name=${encodeURIComponent(userName)}&email=${encodeURIComponent(userEmail)}&fullname=${encodeURIComponent(userName)}&role=${encodeURIComponent('User')}`;
+        });
+    </script>
+</body>
+</html>

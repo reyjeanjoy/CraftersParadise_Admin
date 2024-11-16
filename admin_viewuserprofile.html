@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>User Profile - Crafters Paradise</title>
+    <link rel="stylesheet" href="viewuserprofile.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+</head>
+<body>
+    <header class="header">
+        <div class="header-content">
+            <img src="images\logoo.png" alt="Logo" class="logo">
+            <h1 class="site-name">Crafters Paradise</h1>
+        </div>
+    </header>
+
+    <div class="container">
+        <!-- Sidebar Navigation -->
+        <aside class="sidebar" aria-label="Sidebar Navigation">
+            <nav class="nav-menu">
+                <ul>
+                    <li><a href="admin_dashboard.html"><i class="fas fa-tachometer-alt"></i> Dashboard</a></li>
+                    <li><a href="admin_users.html"><i class="fas fa-users"></i> Users</a></li>
+                    <li><a href="admin_products.html"><i class="fas fa-box"></i> Products</a></li>
+                    <li><a href="admin_settings.html"><i class="fas fa-cogs"></i> Settings</a></li>
+                </ul>
+            </nav>
+            <a href="admin_login.html" class="logout-btn">LOGOUT</a>
+        </aside>
+        
+        <main class="main-content">
+            <div class="viewuserprofile-card">
+                <div class="profile-section-viewuserprofile">
+                    <img src="https://static.vecteezy.com/system/resources/previews/005/544/718/original/profile-icon-design-free-vector.jpg" alt="User" class="profile-pic-viewuserprofile" id="viewuserprofile-user-pic">
+                    <input type="file" id="profile-image-input" accept="image/*" style="display: none;" />
+                    <div class="profile-info-viewuserprofile">
+                        <h2 class="admin-name-viewuserprofile" id="viewuserprofile-user-name"></h2>
+                        <p class="email-viewuserprofile" id="viewuserprofile-email"></p>
+                    </div>
+                </div>
+
+                <h3>Account</h3>
+                <div class="input-group">
+                    <label for="fullname">Full Name</label>
+                    <input type="text" id="fullname" readonly />
+                </div>
+
+                <div class="input-group">
+                    <label for="role">Role</label>
+                    <input type="text" id="role" readonly />
+                </div>
+
+                <div class="input-group">
+                    <label for="email">Email</label>
+                    <input type="text" id="email" readonly />
+                </div>
+            </div>
+        </main>
+    </div>
+
+    <script>
+        // Handling profile image change
+        const urlParams = new URLSearchParams(window.location.search);
+        const userName = urlParams.get('name');
+        const userEmail = urlParams.get('email');
+        const userFullName = urlParams.get('fullname');
+        const userRole = urlParams.get('role');
+
+        document.getElementById('viewuserprofile-user-name').textContent = userFullName || userName;
+        document.getElementById('viewuserprofile-email').textContent = userEmail; 
+        document.getElementById('fullname').value = userFullName || '';
+        document.getElementById('role').value = userRole || '';
+        document.getElementById('email').value = userEmail || '';
+
+        const profileImageInput = document.getElementById('profile-image-input');
+        const viewUserProfilePic = document.getElementById('viewuserprofile-user-pic');
+
+        viewUserProfilePic.addEventListener('click', function() {
+            profileImageInput.click();
+        });
+
+        profileImageInput.addEventListener('change', function() {
+            const file = profileImageInput.files[0];
+            if (file) {
+                const reader = new FileReader();
+                reader.onload = function(e) {
+                    viewUserProfilePic.src = e.target.result;
+                };
+                reader.readAsDataURL(file);
+            }
+        });
+    </script>
+</body>
+</html>

@@ -1,0 +1,176 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Admin Dashboard</title>
+    <link rel="stylesheet" href="dashboard.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+</head>
+<body>
+    <!-- Header Section -->
+    <header class="header">
+        <div class="header-content">
+            <img src="images/logoo.png" alt="Logo" class="logo">
+            <h1 class="site-name">Crafters Paradise</h1>
+        </div>
+    </header>
+
+    <div class="container">
+        <!-- Trigger Area for Sidebar Hover -->
+        <div class="trigger-area"></div>
+        
+        <!-- Sidebar Navigation -->
+        <aside class="sidebar" aria-label="Sidebar Navigation">
+            <nav class="nav-menu">
+                <ul>
+                    <li><a href="admin_dashboard.html"><i class="fas fa-tachometer-alt"></i> Dashboard</a></li>
+                    <li><a href="admin_users.html"><i class="fas fa-users"></i> Users</a></li>
+                    <li><a href="admin_products.html"><i class="fas fa-box"></i> Products</a></li>
+                    <li><a href="admin_settings.html"><i class="fas fa-cogs"></i> Settings</a></li>
+                </ul>
+            </nav>
+            <a href="admin_login.html" class="logout-btn">LOGOUT</a>
+        </aside>
+
+        <!-- Main Dashboard Content -->
+        <main class="main-content">
+            <!-- Dashboard Cards -->
+            <div class="dashboard-cards">
+                <div class="card-container">
+                    <div class="card">
+                        <h2>Pending Users</h2>
+                        <p>100</p>
+                    </div>
+                </div>
+                <div class="card-container">
+                    <div class="card">
+                        <h2>Pending Products</h2>
+                        <p>100</p>
+                    </div>
+                </div>
+                <div class="card-container">
+                    <div class="card">
+                        <h2>New Users</h2>
+                        <p>100</p>
+                    </div>
+                </div>
+                <div class="card-container">
+                    <div class="card">
+                        <h2>New Products</h2>
+                        <p>100</p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Calendar with Month Navigation -->
+            <div class="calendar section-container" style="margin-top: 10px;">
+                <h3 id="calendar-header">July 2024</h3>
+                <div class="month-navigation">
+                    <button onclick="changeMonth(-1)">Previous</button>
+                    <button onclick="changeMonth(1)">Next</button>
+                </div>
+                <table>
+                    <thead>
+                        <tr>
+                            <th>Sun</th>
+                            <th>Mon</th>
+                            <th>Tue</th>
+                            <th>Wed</th>
+                            <th>Thu</th>
+                            <th>Fri</th>
+                            <th>Sat</th>
+                        </tr>
+                    </thead>
+                    <tbody id="calendar-body">
+                        <!-- JavaScript will dynamically populate this section -->
+                    </tbody>
+                </table>
+            </div>
+
+            <!-- Background Container for Activity Log and Searched Stats -->
+            <div class="background-container">
+                <div class="activity-log section-container">
+                    <h3>Activity Log</h3>
+                    <ul>
+                        <li><i class="fas fa-comment"></i> <span class="comment">Justin Bieber added a comment.</span></li>
+                        <li><i class="fas fa-comment"></i> Daniel Radcliffe commented on an item.</li>
+                        <li><i class="fas fa-bell"></i> Notice added in the bag category.</li>
+                    </ul>
+                </div>
+                <div class="searched-stats section-container">
+                    <h3>Searched Stats</h3>
+                    <ul>
+                        <li><span class="chairs">Chairs</span> <i class="fas fa-arrow-up"></i></li>
+                        <li>Vase <i class="fas fa-arrow-down"></i></li>
+                        <li>Bags <i class="fas fa-arrow-up"></i></li>
+                        <li>Tables <i class="fas fa-arrow-down"></i></li>
+                    </ul>
+                </div>
+            </div>
+        </main>
+    </div>
+
+    <script>
+        // JavaScript for updating the calendar
+        const calendarHeader = document.getElementById('calendar-header');
+        const calendarBody = document.getElementById('calendar-body');
+        let currentYear = new Date().getFullYear();
+        let currentMonth = new Date().getMonth();
+
+        function updateCalendar() {
+    calendarBody.innerHTML = ''; // Clear previous cells
+    const monthName = new Date(currentYear, currentMonth).toLocaleString('default', { month: 'long' });
+    calendarHeader.textContent = `${monthName} ${currentYear}`;
+    
+    const firstDayOfMonth = new Date(currentYear, currentMonth, 1).getDay();
+    const daysInMonth = new Date(currentYear, currentMonth + 1, 0).getDate();
+    
+    const today = new Date();
+    const todayDate = today.getDate();
+    const todayMonth = today.getMonth();
+    const todayYear = today.getFullYear();
+
+    let row = document.createElement('tr');
+    for (let i = 0; i < firstDayOfMonth; i++) {
+        row.appendChild(document.createElement('td'));
+    }
+
+    for (let day = 1; day <= daysInMonth; day++) {
+        const cell = document.createElement('td');
+        cell.textContent = day;
+
+        // Check if this is today's date
+        if (day === todayDate && currentMonth === todayMonth && currentYear === todayYear) {
+            cell.classList.add('today');
+        }
+
+        row.appendChild(cell);
+
+        if ((day + firstDayOfMonth) % 7 === 0) {
+            calendarBody.appendChild(row);
+            row = document.createElement('tr');
+        }
+    }
+
+    if (row.children.length > 0) {
+        calendarBody.appendChild(row);
+    }
+}
+
+        function changeMonth(direction) {
+            currentMonth += direction;
+            if (currentMonth < 0) {
+                currentMonth = 11;
+                currentYear--;
+            } else if (currentMonth > 11) {
+                currentMonth = 0;
+                currentYear++;
+            }
+            updateCalendar();
+        }
+
+        document.addEventListener('DOMContentLoaded', updateCalendar);
+    </script>
+</body>
+</html>

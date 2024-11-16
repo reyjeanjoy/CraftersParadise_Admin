@@ -1,0 +1,191 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: Century Gothic;
+}
+
+body {
+    display: flex;
+    flex-direction: column;
+    height: 100vh;
+}
+
+.header {
+    width: 100%;
+    background-color: #6f3b26;
+}
+
+.header-content {
+    display: flex;
+    align-items: center;
+}
+
+.logo {
+    width: 150px;
+    height: 95px;
+    object-fit: cover;
+    object-position: center;
+    margin-right: 10px;
+    margin-top: -10px;
+}
+
+.site-name {
+    font-size: 32px;
+    letter-spacing: 5px;
+    font-weight: bold;
+    color: #fff;
+}
+/* Container for sidebar and content */
+.container {
+    display: flex;
+    flex: 1;
+    width: 100%;
+    background-color: #f4f4f4;
+}
+
+/* Sidebar */
+.sidebar {
+    width: 230px;
+    background-color:  #6f3b26;
+    color: #fff;
+    display: flex;
+    flex-direction: column;
+    align-items: left;
+    padding-top: 20px;
+    position: relative;
+    font-size: large;
+    font-weight: bold;
+    letter-spacing: 3px;
+}
+
+.profile-section {
+    text-align: center;
+    margin-bottom: 30px;
+}
+
+.profile-pic {
+    width: 75px;
+    height: 75px;
+    border-radius: 50%;
+    margin-left: 8%;
+}
+
+.profile-section {
+    display: flex; /* Use flexbox for horizontal alignment */
+    align-items: center; /* Center items vertically */
+    margin-bottom: 30px;
+}
+
+.profile-info {
+    margin-left: 15px; /* Space between image and text */
+    text-align: left; /* Align text to the left */
+}
+
+.admin-name {
+    font-size: 20px;
+    font-weight: bold;
+}
+
+.role {
+    font-size: 14px;
+}
+
+.nav-menu ul {
+    list-style-type: none;
+}
+
+.nav-menu ul li {
+    width: 100%; 
+}
+
+.nav-menu ul li a {
+    color: #fff; 
+    text-decoration: none;
+    padding: 10px 15px; 
+    display: flex; 
+    align-items: center; 
+    margin-top: 30px;
+}
+
+.nav-menu ul li a i {
+    margin-right: 10px;
+    font-size: 20px;
+    padding: 5px;
+}
+.nav-menu ul li a:hover {
+    background-color: #d9b59e;
+    font-weight: bold;
+}
+
+
+.logout-btn {
+    position: absolute;
+    bottom: 20px;
+    left: 50%;
+    transform: translateX(-50%); /* Center it horizontally */
+    text-decoration: none;
+    color: #fff;
+    background-color: #d9534f;
+    padding: 10px 20px;
+    border-radius: 5px;
+    font-size: 15px;
+    font-weight: bold;
+}
+
+.logout-btn:hover {
+    background-color: #c9302c;
+}
+
+
+/* Main Content */
+.main-content {
+    width: 85%;
+    padding: 20px;
+    display: flex;
+    flex-direction: column;
+    gap: 30px;
+}
+/* Product Card */
+.product-card {
+    display: flex;
+    align-items: center;
+    background-color: #f4f4f4;
+    border-radius: 10px;
+    padding: 15px;
+    
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+}
+
+.product-image {
+    width: 100px;
+    height: 100px;
+    border-radius: 50%;
+    margin-right: 20px;
+}
+
+.product-info {
+    flex-grow: 1;
+    font-size: 14px;
+}
+
+.product-info h2 {
+    font-size: 16px;
+    font-weight: bold;
+}
+
+.view-products-btn {
+    background-color: #6f3b2699;
+    color: white;
+    padding: 10px 20px;
+    border-color: #6f3b26;
+    border-width: 2px;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 15px;
+    font-weight: bold;
+}
+
+.view-products-btn:hover {
+    background-color: #6f3b26;
+}

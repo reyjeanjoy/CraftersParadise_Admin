@@ -1,0 +1,287 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: Century Gothic;
+    
+}
+
+body {
+    display: flex;
+    flex-direction: column;
+    height: 100vh;
+    
+}
+
+/* Header */
+.header {
+    width: 100%;
+    background-color: #6f3b26;
+}
+
+.header-content {
+    display: flex;
+    align-items: center;
+}
+
+.logo {
+    width: 150px;
+    height: 95px;
+    object-fit: cover;
+    object-position: center;
+    margin-right: 10px;
+    margin-top: -10px;
+}
+
+.site-name {
+    font-size: 32px;
+    letter-spacing: 5px;
+    font-weight: bold;
+    color: #fff;
+}
+
+/* Container for sidebar and content */
+.container {
+    display: flex;
+    flex: 1;
+    width: 100%;
+    background-color: #f4f4f4;
+}
+
+/* Sidebar */
+.sidebar {
+    width: 230px;
+    background-color:  #6f3b26;
+    color: #fff;
+    display: flex;
+    flex-direction: column;
+    align-items: left;
+    padding-top: 20px;
+    position: relative;
+    font-size: large;
+    font-weight: bold;
+    letter-spacing: 3px;
+}
+
+.profile-section {
+    text-align: center;
+    margin-bottom: 30px;
+}
+
+.profile-pic {
+    width: 75px;
+    height: 75px;
+    border-radius: 50%;
+    margin-left: 8%;
+}
+
+.profile-section {
+    display: flex; /* Use flexbox for horizontal alignment */
+    align-items: center; /* Center items vertically */
+    margin-bottom: 30px;
+}
+
+.profile-info {
+    margin-left: 15px; /* Space between image and text */
+    text-align: left; /* Align text to the left */
+}
+
+.admin-name {
+    font-size: 20px;
+    font-weight: bold;
+}
+
+.role {
+    font-size: 14px;
+}
+
+.nav-menu ul {
+    list-style-type: none;
+}
+
+.nav-menu ul li {
+    width: 100%; 
+}
+
+.nav-menu ul li a {
+    color: #fff; 
+    text-decoration: none;
+    padding: 10px 15px; 
+    display: flex; 
+    align-items: center; 
+    margin-top: 30px;
+}
+
+.nav-menu ul li a i {
+    margin-right: 10px;
+    font-size: 20px;
+    padding: 5px;
+}
+.nav-menu ul li a:hover {
+    background-color: #d9b59e;
+    font-weight: bold;
+}
+
+
+.logout-btn {
+    position: absolute;
+    bottom: 20px;
+    left: 50%;
+    transform: translateX(-50%); /* Center it horizontally */
+    text-decoration: none;
+    color: #fff;
+    background-color: #d9534f;
+    padding: 10px 20px;
+    border-radius: 5px;
+    font-size: 15px;
+    font-weight: bold;
+}
+
+.logout-btn:hover {
+    background-color: #c9302c;
+}
+
+
+/* Container for sidebar and content */
+.container {
+    display: flex;
+    flex: 1;
+    width: 100%;
+    background-color: #f4f4f4;
+    
+}
+
+.container {
+    display: flex;
+    width: 100%;
+    
+}
+
+.menu {
+    margin-top: 20px;
+}
+
+.menu ul {
+    list-style: none;
+}
+
+.menu li {
+    margin-bottom: 10px;
+}
+
+.menu a {
+    color: white;
+    text-decoration: none;
+    font-size: 1.1em;
+}
+
+/* Content Area */
+.content {
+    flex-grow: 1;
+    background-color: white;
+    padding: 40px;
+    text-align: center; /* Ensure all content inside is centered */
+}
+
+/* User Details (Profile Section in Content Area) */
+.user-details {
+    text-align: center;
+    margin-bottom: 5px;
+}
+
+.user-details .profile-pic {
+    width: 100px;
+    height: 100px;
+    border-radius: 50%;
+    margin: 0 auto 10px auto; /* Center the image */
+}
+
+.user-details h1 {
+    margin: 10px 0;
+    font-size: 20px;
+    font-weight: bold;
+}
+
+.email {
+    color: #666;
+    font-size: 15px;
+}
+
+.membership {
+    background-color: #d0c4e4;
+    color: #333;
+    padding: 10px 15px;
+    border-radius: 5px;
+    display: inline-block;
+    margin: 15px 0;
+    font-size: 15px;
+}
+
+/* Payment History */
+.payment-history h2 {
+    margin-bottom: 20px;
+    font-size: 20px;
+    font-weight: bold;
+    text-align: left;
+}
+
+.payment-history ul {
+    list-style: none;
+}
+
+.payment-history li {
+    font-size: 1.1em;
+    margin-bottom: 10px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    font-size: 15px;
+}
+
+.status {
+    padding: 5px 10px;
+    border-radius: 5px;
+    color: white;
+    font-weight: bold;
+    font-size: 15px;
+}
+
+.status.pending {
+    background-color: #e0b750;
+}
+
+.status.done {
+    background-color: #369a3a;
+}
+
+.actions {
+    margin-top: 20px;
+    text-align: center;
+}
+
+button {
+    padding: 10px 20px;
+    margin: 0 10px;
+    border: none;
+    border-radius: 5px;
+    font-size: 15px;
+    cursor: pointer;
+}
+
+button.suspend {
+    background-color: rgb(107, 29, 29);
+    color: white;
+}
+
+button.resume {
+    background-color: rgb(229, 175, 76);
+    color: white;
+}
+
+button.suspend:hover {
+    background-color: darkred;
+}
+
+button.resume:hover {
+    background-color: rgb(211, 145, 64);
+}

@@ -1,0 +1,281 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: Century Gothic;
+}
+
+body {
+    display: flex;
+    flex-direction: column;
+    height: 100vh;
+}
+
+/* Header */
+.header {
+    width: 100%;
+    background-color: #6f3b26;
+}
+
+.header-content {
+    display: flex;
+    align-items: center;
+}
+
+.logo {
+    width: 150px;
+    height: 95px;
+    object-fit: cover;
+    object-position: center;
+    margin-right: 10px;
+    margin-top: -10px;
+}
+
+.site-name {
+    font-size: 32px;
+    letter-spacing: 5px;
+    font-weight: bold;
+    color: #fff;
+}
+
+/* Container for sidebar and content */
+.container {
+    display: flex;
+    flex: 1;
+    width: 100%;
+    background-color: #f4f4f4;
+}
+
+/* Sidebar */
+.sidebar {
+    width: 230px;
+    background-color:  #6f3b26;
+    color: #fff;
+    display: flex;
+    flex-direction: column;
+    align-items: left;
+    padding-top: 20px;
+    position: relative;
+    font-size: large;
+    font-weight: bold;
+    letter-spacing: 3px;
+}
+.profile-section {
+    text-align: center;
+    margin-bottom: 30px;
+}
+
+.profile-pic {
+    width: 75px;
+    height: 75px;
+    border-radius: 50%;
+    margin-left: 8%;
+}
+
+.profile-section {
+    display: flex; /* Use flexbox for horizontal alignment */
+    align-items: center; /* Center items vertically */
+    margin-bottom: 30px;
+}
+
+.profile-info {
+    margin-left: 15px; /* Space between image and text */
+    text-align: left; /* Align text to the left */
+}
+
+.admin-name {
+    font-size: 20px;
+    font-weight: bold;
+    
+}
+
+.role {
+    font-size: 14px;
+}
+
+.nav-menu ul {
+    list-style-type: none;
+}
+
+.nav-menu ul li {
+    width: 100%; 
+}
+
+.nav-menu ul li a {
+    color: #fff; 
+    text-decoration: none;
+    padding: 10px 15px; 
+    display: flex; 
+    align-items: center;
+    margin-top: 30px; 
+}
+
+.nav-menu ul li a i {
+    margin-right: 10px;
+    font-size: 20px;
+    padding: 5px;
+}
+.nav-menu ul li a:hover {
+    background-color: #d9b59e;
+    font-weight: bold;
+}
+
+
+.logout-btn {
+    position: absolute;
+    bottom: 20px;
+    left: 50%;
+    transform: translateX(-50%); /* Center it horizontally */
+    text-decoration: none;
+    color: #fff;
+    background-color: #d9534f;
+    padding: 10px 20px;
+    border-radius: 5px;
+    font-size: 15px;
+    font-weight: bold;
+}
+
+.logout-btn:hover {
+    background-color: #c9302c;
+}
+
+
+/* Main Content */
+.main-content {
+    width: 80%;
+    padding: 20px;
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+}
+h3{
+    font-size: 18px;
+    margin-bottom: 10px;
+}
+/* Settings Card */
+.settings-card {
+    background-color: #6f3b2699; /* Pastel light brown color */
+    border-radius: 10px;
+    padding: 20px;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+    width: 80%; /* Adjust the width */
+    max-width: 700px; /* Set a max-width */
+    margin: auto; /* Center it */
+}
+
+.profile-section-settings {
+    display: flex;
+    align-items: center;
+    margin-bottom: 20px;
+    font-size: 15px;
+}
+
+.profile-pic-settings {
+    width: 75px;
+    height: 75px;
+    border-radius: 50%;
+    margin-right: 15px; /* Space between image and text */
+}
+
+.profile-info-settings {
+    text-align: left; /* Align text to the left */
+}
+
+.admin-name-settings {
+    font-size: 20px;
+    font-weight: bold;
+    margin: 0; /* Remove margin */
+}
+
+.email-settings {
+    color: #f5dfd6;
+    margin: 5px 0; /* Add some margin for spacing */
+}
+
+.input-group {
+    margin-bottom: 15px;
+    font-size: 13px;
+}
+
+.input-group label {
+    display: block;
+    margin-bottom: 5px;
+    font-weight: bold;
+    font-size: 15px;
+}
+
+/* settings.css */
+.input-group input {
+    background-color: #f5f5f5; /* Original color */
+    border: 1px solid #ccc;    /* Consistent border */
+    padding: 10px;
+    margin: 5px 0;
+    width: 100%;
+}
+
+.input-group input[readonly] {
+    background-color: #f5f5f5; /* Same as original when readonly */
+    color: #555;               /* Text color for readonly state */
+}
+
+.button-container {
+    display: flex;
+    gap: 10px; /* Space between buttons */
+    margin-top: 20px; /* Adjust as needed */
+    margin-left: 500px;
+}
+
+.edit-btn,
+.save-btn,
+.cancel-btn,
+.change-profile-btn,
+.remove-profile-btn {
+    background-color: #6f3b2699; 
+    color: white;               
+    border: none;
+    padding: 10px 20px;
+    cursor: pointer;
+    border-radius: 5px;        
+    transition: background-color 0.3s;
+    border-color: #6f3b26;
+    border-width: 2px;
+    border-radius: 5px;
+    position:relative;
+    letter-spacing: 3px;
+
+}
+
+.edit-btn:hover,
+.save-btn:hover,
+.cancel-btn:hover,
+.change-profile-btn,
+.remove-profile-btn {
+    border-color: #6f3b26;
+    border-width: 2px;
+    border-radius: 5px;
+    background-color: #bb644199; 
+}
+
+/* Password Container */
+.password-container {
+    position: relative;
+}
+
+.password-container input {
+    width: calc(100% - 40px); /* Make room for the icon */
+    padding-right: 40px; /* Ensure the input doesn't overlap the icon */
+}
+
+.password-container i {
+    position: absolute;
+    top: 50%;
+    right: 10px;
+    transform: translateY(-50%);
+    cursor: pointer;
+    font-size: 16px;
+    color: #6f3b26;
+}
+
+.password-container i:hover {
+    color: #54331d;
+}
