@@ -47,7 +47,7 @@
                 </div>
 
                 <div class="input-group">
-                    <label for="role">Role</label>
+                    <label for="role">User Type</label>
                     <input type="text" id="role" readonly />
                 </div>
 
@@ -65,12 +65,12 @@
         const userName = urlParams.get('name');
         const userEmail = urlParams.get('email');
         const userFullName = urlParams.get('fullname');
-        const userRole = urlParams.get('role');
+        const userRole = urlParams.get('role'); // 'role' will now be replaced by 'userType'
 
         document.getElementById('viewuserprofile-user-name').textContent = userFullName || userName;
         document.getElementById('viewuserprofile-email').textContent = userEmail; 
         document.getElementById('fullname').value = userFullName || '';
-        document.getElementById('role').value = userRole || '';
+        document.getElementById('role').value = userRole || ''; // Display the 'userType' in the 'role' field
         document.getElementById('email').value = userEmail || '';
 
         const profileImageInput = document.getElementById('profile-image-input');

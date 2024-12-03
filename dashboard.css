@@ -1,4 +1,3 @@
-/* Reset and basic styles */
 * {
     margin: 0;
     padding: 0;
@@ -11,17 +10,22 @@ body {
     flex-direction: column;
     height: 100vh;
     background-color: #f4f4f4;
+    overflow-y: scroll;
 }
 
-/* Header */
 .header {
     width: 100%;
     background-color: #6f3b26;
+    position: fixed;
+    top: 0;
+    left: 0;
+    z-index: 100;
 }
 
 .header-content {
     display: flex;
     align-items: center;
+    padding: 10px;
 }
 
 .logo {
@@ -30,7 +34,6 @@ body {
     object-fit: cover;
     object-position: center;
     margin-right: 10px;
-    margin-top: -10px;
 }
 
 .site-name {
@@ -40,35 +43,32 @@ body {
     color: #fff;
 }
 
-/* Updated Container for sidebar and content */
 .container {
     display: flex;
     flex: 1;
-    width: 100vw; /* Full width */
+    width: 100vw;
     background-color: #f4f4f4;
     gap: 20px;
-    transition: margin-left 0.3s ease-in-out; /* Smooth transition when shifting */
+    margin-top: 100px;
+    transition: margin-left 0.3s ease-in-out;
 }
 
-/* Trigger Area on the Left Side */
 .trigger-area {
     position: fixed;
     left: 0;
-    top: 70px; /* Offset for header */
+    top: 70px;
     height: 100%;
     width: 20px;
     z-index: 10;
 }
 
-/* Sidebar */
-/* Sidebar */
 .sidebar {
     width: 250px;
-    background-color:  #6f3b26;
+    background-color: #6f3b26;
     color: #fff;
     position: fixed;
-    left: 0; /* Sidebar is always visible */
-    top: 85px; /* Below the header */
+    top: 85px;
+    left: 0;
     height: calc(100% - 70px);
     display: flex;
     flex-direction: column;
@@ -77,28 +77,20 @@ body {
     font-size: large;
     font-weight: bold;
     letter-spacing: 3px;
+    overflow-y: auto;
 }
 
-/* Remove trigger area as it's no longer needed */
-.trigger-area {
-    display: none;
-}
-
-/* Container */
 .container {
     display: flex;
     flex: 1;
-    width: calc(100vw - 250px); /* Account for sidebar width */
-    margin-left: 250px; /* Offset content by sidebar width */
+    width: calc(100vw - 250px);
+    margin-left: 250px;
     background-color: #f4f4f4;
     gap: 20px;
 }
 
-
-/* Sidebar Navigation Menu */
 .nav-menu ul {
     list-style-type: none;
-   
 }
 
 .nav-menu ul li a {
@@ -108,14 +100,12 @@ body {
     display: flex;
     align-items: center;
     margin-top: 30px;
-   
 }
 
 .nav-menu ul li a i {
     margin-right: 10px;
     font-size: 20px;
     padding: 5px;
- 
 }
 
 .nav-menu ul li a:hover {
@@ -123,7 +113,6 @@ body {
     font-weight: bold;
 }
 
-/* Logout Button */
 .logout-btn {
     position: absolute;
     bottom: 20px;
@@ -142,16 +131,14 @@ body {
     background-color: #c9302c;
 }
 
-/* Main Content Styling */
 .main-content {
     display: grid;
     grid-template-columns: repeat(2, 1fr);
     gap: 20px;
-    width: 100%; /* Ensure full width */
+    width: 100%;
     padding: 10px;
 }
 
-/* Dashboard Cards */
 .dashboard-cards {
     grid-column: span 2;
     display: flex;
@@ -171,60 +158,17 @@ body {
     box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
 }
 
-.card-container h2 {
-    font-size: 15px;
-    color: #fff;
-    margin-bottom: 10px;
-}
-
-.card-container p {
-    font-size: 24px;
-    font-weight: bold;
-    color: #fff;
-}
-
-/* Background Containers */
-.background-container {
-    display: flex;
-    flex-direction: column;
-    gap: 30px;
-    margin-top: -120px;
-    height: 650px;
-}
-
-/* Section Container for Activity Log and Searched Stats */
 .section-container {
     background-color: #b39b87;
     border-radius: 15px;
     padding: 30px;
     box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
-    height: 300px;
+    height: 200px;
     display: flex;
     flex-direction: column;
     justify-content: space-between;
 }
 
-.activity-log ul, .searched-stats ul {
-    list-style: none;
-    padding: 0;
-    color: #fff;
-    font-size: 15px;
-    margin-top: -10px;
-}
-
-.activity-log li {
-    display: flex;
-    align-items: center;
-    gap: 15px;
-}
-
-.searched-stats li {
-    display: flex;
-    align-items: center;
-    gap: 15px;
-}
-
-/* Calendar */
 .calendar {
     text-align: center;
     font-size: larger;
@@ -247,14 +191,14 @@ body {
 
 .calendar th {
     color: #fff;
-    font-size: 20px; 
+    font-size: 20px;
 }
 
 .calendar h3 {
     color: #fff;
     letter-spacing: 5px;
     font-weight: 900;
-    font-size: 28px; 
+    font-size: 28px;
     margin-top: -5px;
 }
 
@@ -263,7 +207,6 @@ body {
     cursor: pointer;
 }
 
-/* Month Navigation */
 .month-navigation {
     display: flex;
     justify-content: space-between;
@@ -289,12 +232,46 @@ body {
     font-size: 16px;
 }
 
-/* Move Sidebar and Main Content Together */
 .container:hover {
-    margin-left: 250px; /* Move everything to the right when the sidebar is visible */
+    margin-left: 250px;
 }
 
 .container .main-content {
     margin-left: 0;
-    transition: margin-left 0.3s ease-in-out; /* Smooth transition for content */
+    transition: margin-left 0.3s ease-in-out;
 }
+
+.user_section-container {
+    text-align: center;
+    padding: 20px;
+    border-radius: 8px;
+    width: 500px;
+    height: 300px;
+    background-color: #f4f4f4;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.section-container {
+    margin-bottom: 20px;
+}
+
+.business-owners,
+.artisans,
+.buyers {
+    margin-bottom: 10px;
+}
+
+.user-counts-container {
+    display: flex;
+    justify-content: space-around;
+    padding: 20px;
+}
+
+#business-owners-count, #artisans-count, #buyers-count {
+    font-size: 36px;
+    font-weight: bold;
+    color: #6f3b26;
+    margin-top: 20px;
+}
+

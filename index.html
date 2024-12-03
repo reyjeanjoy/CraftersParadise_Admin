@@ -45,9 +45,8 @@
         </form>
     </div>
 
-    <!-- Firebase Configuration and Login Logic -->
     <script>
-        // Initialize Firebase
+       
         const firebaseConfig = {
             apiKey: "AIzaSyCdp-AWmi1GrcrCYrEcog6rfhRygrt0uRc",
             authDomain: "craftersparadise-8c962.firebaseapp.com",
@@ -59,7 +58,6 @@
         const app = firebase.initializeApp(firebaseConfig);
         const db = firebase.firestore();
 
-        // Handle login form submission
         async function handleLogin(event) {
             event.preventDefault();
             const email = document.getElementById('email').value;
@@ -68,32 +66,32 @@
             const spinner = document.getElementById('spinner');
             const loginButton = document.querySelector('.login-button');
 
-            // Hide the login button and show the spinner
-            loginButton.style.display = 'none'; // Hide the login button
-            spinner.style.display = 'inline-block'; // Show the spinner
+         
+            loginButton.style.display = 'none'; 
+            spinner.style.display = 'inline-block'; 
 
             try {
-                // Query Firestore to find the user by email
+                
                 const usersRef = db.collection('admins');
                 const querySnapshot = await usersRef.where('email', '==', email).get();
 
                 if (!querySnapshot.empty) {
                     const userData = querySnapshot.docs[0].data();
-                    // Check if the password matches
+                    
                     if (userData.password === password) {
-                        // Clear previous session data
-                        localStorage.removeItem('loggedInUser'); // Clear previous user data
+                        
+                        localStorage.removeItem('loggedInUser'); 
 
-                        // Save new user details to localStorage
+                       
                         localStorage.setItem('loggedInUser', JSON.stringify(userData));
-                        window.location.href = 'admin_dashboard.html'; // Redirect to dashboard
+                        window.location.href = 'admin_dashboard.html'; 
                     } else {
-                        // Show error message if password is incorrect
+                        
                         errorMessage.textContent = 'Invalid email or password.';
                         errorMessage.style.display = 'block';
                     }
                 } else {
-                    // Show error message if user not found
+                   
                     errorMessage.textContent = 'Invalid email or password.';
                     errorMessage.style.display = 'block';
                 }
@@ -102,9 +100,9 @@
                 errorMessage.textContent = 'An error occurred. Please try again.';
                 errorMessage.style.display = 'block';
             } finally {
-                // After processing, show the button back and hide the spinner
-                loginButton.style.display = 'block'; // Show the login button
-                spinner.style.display = 'none'; // Hide the spinner
+            
+                loginButton.style.display = 'block'; 
+                spinner.style.display = 'none'; 
             }
         }
     </script>

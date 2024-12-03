@@ -11,16 +11,25 @@ body {
     flex-direction: column;
     height: 100vh;
     background-color: #f4f4f4;
+    overflow-y: auto; /* Enable vertical scrolling */
 }
 
+/* Header */
 .header {
     width: 100%;
     background-color: #6f3b26;
+    position: fixed;  /* Fixed at the top */
+    top: 0;
+    left: 0;
+    z-index: 100; /* Make sure header stays above content */
+    padding: 10px 0;
 }
 
 .header-content {
     display: flex;
     align-items: center;
+    justify-content: flex-start;
+    padding: 0 20px;
 }
 
 .logo {
@@ -43,9 +52,11 @@ body {
 .container {
     display: flex;
     flex: 1;
-    width: calc(100vw - 250px); /* Account for sidebar width */
-    margin-left: 250px; /* Offset content by sidebar width */
+    flex-direction: column;
+    margin-top: 100px; /* Offset content to avoid being hidden under the header */
     background-color: #f4f4f4;
+    overflow-y: auto; /* Allow content to scroll */
+    padding-left: 250px; /* Sidebar width */
 }
 
 /* Sidebar */
@@ -54,9 +65,9 @@ body {
     background-color:  #6f3b26;
     color: #fff;
     position: fixed;
-    left: 0; /* Always visible */
-    top: 85px; /* Below the header */
-    height: calc(100% - 70px);
+    left: 0;
+    top: 85px; /* Positioned below header */
+    height: calc(100% - 70px); /* Sidebar takes full height minus header height */
     display: flex;
     flex-direction: column;
     padding-top: 20px;
@@ -64,8 +75,8 @@ body {
     font-size: large;
     font-weight: bold;
     letter-spacing: 3px;
+    overflow-y: auto; /* Allow sidebar to scroll */
 }
-
 
 /* Sidebar Nav Menu */
 .nav-menu ul {

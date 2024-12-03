@@ -38,7 +38,8 @@
                         <p id="user-email">User Email</p>
                     </div>
                     <div class="buttons">
-                        <button class="btn status" id="subscription-status-btn">Subscription Status</button>
+                        <!-- Subscription button is hidden by default -->
+                        <button class="btn status" id="subscription-status-btn" style="display: none;">Subscription Status</button>
                         <button class="btn profile" id="view-profile-btn">View Profile</button>
                     </div>
                 </div>
@@ -47,19 +48,29 @@
     </div>
 
     <script>
+        // Get the URL parameters
         const urlParams = new URLSearchParams(window.location.search);
         const userName = urlParams.get('name');
         const userEmail = urlParams.get('email');
+        const userType = urlParams.get('userType'); // Get userType from URL parameters
 
+        // Set the user details in the page
         document.getElementById('user-name').textContent = userName;
         document.getElementById('user-email').textContent = userEmail;
 
+        // Show the Subscription Status button if the user is a business owner
+        if (userType === 'businessowner') {
+            document.getElementById('subscription-status-btn').style.display = 'inline-block'; // Show the button
+        }
+
+        // Event listener for Subscription Status button
         document.getElementById('subscription-status-btn').addEventListener('click', function() {
             window.location.href = `admin_subscription.html?name=${encodeURIComponent(userName)}&email=${encodeURIComponent(userEmail)}`;
         });
 
+        // Event listener for View Profile button
         document.getElementById('view-profile-btn').addEventListener('click', function() {
-            window.location.href = `admin_viewuserprofile.html?name=${encodeURIComponent(userName)}&email=${encodeURIComponent(userEmail)}&fullname=${encodeURIComponent(userName)}&role=${encodeURIComponent('User')}`;
+            window.location.href = `admin_viewuserprofile.html?name=${encodeURIComponent(userName)}&email=${encodeURIComponent(userEmail)}&fullname=${encodeURIComponent(userName)}&role=${encodeURIComponent(userType)}`;
         });
     </script>
 </body>
